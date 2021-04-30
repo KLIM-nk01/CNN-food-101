@@ -21,7 +21,7 @@ for gpu in gpus:
   tf.config.experimental.set_memory_growth(gpu, True)
 
 
-LOG_DIR = 'logs'
+LOG_DIR = 'logs_0.01_30k_0'
 BATCH_SIZE = 32
 NUM_CLASSES = 101
 RESIZE_TO = 224
@@ -72,8 +72,8 @@ def main():
 
   model = build_model()
 
-  initial_rate = 0.0001
-  decay_steps = 22200
+  initial_rate = 0.01
+  decay_steps = 30000
 
   learning_rate_cos = tf.keras.experimental.CosineDecay(initial_rate, decay_steps)
 
