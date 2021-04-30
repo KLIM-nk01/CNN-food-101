@@ -72,8 +72,13 @@ def main():
 
   model = build_model()
 
+  initial_rate = 0.0001
+  decay_steps = 22200
+
+  learning_rate_cos = tf.keras.experimental.CosineDecay(initial_rate, decay_steps)
+
   model.compile(
-    optimizer=tf.optimizers.Adam(lr=0.0001),
+    optimizer=tf.optimizers.Adam(learning_rate=learning_rate_cos),
     loss=tf.keras.losses.categorical_crossentropy,
     metrics=[tf.keras.metrics.categorical_accuracy],
   )
@@ -84,7 +89,7 @@ def main():
     epochs=50,
     validation_data=validation_dataset,
     callbacks=[
-      tf.keras.callbacks.TensorBoard(log_dir),
+      tf.keras.callbacks.TensorBoard(log_dir)
     ]
   )
 
