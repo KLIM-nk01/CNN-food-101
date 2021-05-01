@@ -21,7 +21,7 @@ for gpu in gpus:
   tf.config.experimental.set_memory_growth(gpu, True)
 
 
-LOG_DIR = 'logs_0.01_30k_0'
+LOG_DIR = 'logs_0.0001_80k_10'
 BATCH_SIZE = 32
 NUM_CLASSES = 101
 RESIZE_TO = 224
@@ -72,10 +72,7 @@ def main():
 
   model = build_model()
 
-  initial_rate = 0.01
-  decay_steps = 30000
-
-  learning_rate_cos = tf.keras.experimental.CosineDecay(initial_rate, decay_steps)
+  learning_rate_cos = tf.keras.experimental.CosineDecay(0.0001, 80000, 10)
 
   model.compile(
     optimizer=tf.optimizers.Adam(learning_rate=learning_rate_cos),
@@ -86,7 +83,7 @@ def main():
   log_dir='{}/f101-{}'.format(LOG_DIR, time.time())
   model.fit(
     train_dataset,
-    epochs=50,
+    epochs=20,
     validation_data=validation_dataset,
     callbacks=[
       tf.keras.callbacks.TensorBoard(log_dir)
