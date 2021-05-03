@@ -21,7 +21,7 @@ for gpu in gpus:
   tf.config.experimental.set_memory_growth(gpu, True)
 
 
-LOG_DIR = '0.0001_10k_2.0_1.0'
+LOG_DIR = '0.0001_35k_1.5_0.5'
 BATCH_SIZE = 32
 NUM_CLASSES = 101
 RESIZE_TO = 224
@@ -72,7 +72,7 @@ def main():
 
   model = build_model()
 
-  learning_rate_CDWR = tf.keras.experimental.CosineDecayRestarts(0.001, 10000, 2.0, 1.0)
+  learning_rate_CDWR = tf.keras.experimental.CosineDecayRestarts(0.0001, 35000, 1.5, 0.5)
 
   model.compile(
     optimizer=tf.optimizers.Adam(learning_rate=learning_rate_CDWR),
