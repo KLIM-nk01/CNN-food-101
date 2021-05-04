@@ -21,7 +21,7 @@ for gpu in gpus:
   tf.config.experimental.set_memory_growth(gpu, True)
 
 
-LOG_DIR = 'RandomFlip_VERTICAL'
+LOG_DIR = 'logs_RandomFlip_HORIZONTAL_AND_VERTICAL'
 BATCH_SIZE = 32
 NUM_CLASSES = 101
 RESIZE_TO = 224
@@ -53,7 +53,7 @@ def create_dataset(filenames, batch_size):
 
 def build_model():
   inputs = tf.keras.Input(shape=(RESIZE_TO, RESIZE_TO, 3))
-  x = tf.keras.layers.experimental.preprocessing.RandomFlip('vertical')(inputs)
+  x = tf.keras.layers.experimental.preprocessing.RandomFlip('horizontal_and_vertical')(inputs)
   x = EfficientNetB0(include_top=False, input_tensor = x, pooling ='avg', weights='imagenet')
   x.trainable = False
   x = tf.keras.layers.Flatten()(x.output)
@@ -82,7 +82,7 @@ def main():
   log_dir='{}/f101-{}'.format(LOG_DIR, time.time())
   model.fit(
     train_dataset,
-    epochs=22,
+    epochs=25,
     validation_data=validation_dataset,
     callbacks=[
       tf.keras.callbacks.TensorBoard(log_dir)
