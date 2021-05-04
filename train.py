@@ -21,7 +21,7 @@ for gpu in gpus:
   tf.config.experimental.set_memory_growth(gpu, True)
 
 
-LOG_DIR = '0.001_45k'
+LOG_DIR = 'RandomFlip_VERTICAL'
 BATCH_SIZE = 32
 NUM_CLASSES = 101
 RESIZE_TO = 224
@@ -53,7 +53,8 @@ def create_dataset(filenames, batch_size):
 
 def build_model():
   inputs = tf.keras.Input(shape=(RESIZE_TO, RESIZE_TO, 3))
-  x = EfficientNetB0(include_top=False, input_tensor = inputs,pooling ='avg', weights='imagenet')
+  x = tf.keras.layers.experimental.preprocessing.RandomFlip('vertical')(inputs)
+  x = EfficientNetB0(include_top=False, input_tensor = x, pooling ='avg', weights='imagenet')
   x.trainable = False
   x = tf.keras.layers.Flatten()(x.output)
   outputs = tf.keras.layers.Dense(NUM_CLASSES, activation=tf.keras.activations.softmax)(x)
@@ -72,10 +73,8 @@ def main():
 
   model = build_model()
 
-  learning_rate_CD = tf.keras.experimental.CosineDecay(0.001, 45000)
-
   model.compile(
-    optimizer=tf.optimizers.Adam(learning_rate=learning_rate_CD),
+    optimizer=tf.optimizers.Adam(lr=0.0001),
     loss=tf.keras.losses.categorical_crossentropy,
     metrics=[tf.keras.metrics.categorical_accuracy],
   )
@@ -83,7 +82,7 @@ def main():
   log_dir='{}/f101-{}'.format(LOG_DIR, time.time())
   model.fit(
     train_dataset,
-    epochs=25,
+    epochs=22,
     validation_data=validation_dataset,
     callbacks=[
       tf.keras.callbacks.TensorBoard(log_dir)
