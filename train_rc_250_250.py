@@ -20,7 +20,7 @@ for gpu in gpus:
   tf.config.experimental.set_memory_growth(gpu, True)
 
 
-LOG_DIR = 'logs_RandomCrop_250_240'
+LOG_DIR = 'logs_RandomCrop_250_250'
 BATCH_SIZE = 32
 NUM_CLASSES = 101
 RESIZE_TO = 224

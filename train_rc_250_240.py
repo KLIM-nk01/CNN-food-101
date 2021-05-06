@@ -26,7 +26,7 @@ NUM_CLASSES = 101
 RESIZE_TO = 224
 TRAIN_SIZE = 101000
 RC_HEIGHT = 250
-RC_WIDTH = 250
+RC_WIDTH = 240
 
 
 def parse_proto_example(proto):
