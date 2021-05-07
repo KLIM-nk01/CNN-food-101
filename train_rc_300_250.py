@@ -20,13 +20,13 @@ for gpu in gpus:
   tf.config.experimental.set_memory_growth(gpu, True)
 
 
-LOG_DIR = 'logs_RandomCrop_260_260_'
+LOG_DIR = 'logs_RandomCrop_300_250'
 BATCH_SIZE = 32
 NUM_CLASSES = 101
 RESIZE_TO = 224
 TRAIN_SIZE = 101000
-RC_HEIGHT = 260
-RC_WIDTH = 260
+RC_HEIGHT = 300
+RC_WIDTH = 250
 
 
 def parse_proto_example(proto):
