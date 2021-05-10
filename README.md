@@ -93,7 +93,7 @@ Food-101 с использованием техники обучения Transfe
 
 ***Визуализация случайных изображений***
 
-![Uploading image.png…]()
+![image](https://user-images.githubusercontent.com/56519328/117637660-b11cf400-b18a-11eb-9589-2c0dae01a452.png)
 
 
 ***Анализ полученных результатов***
