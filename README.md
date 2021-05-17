@@ -44,9 +44,6 @@
 
 ![image](https://user-images.githubusercontent.com/56519328/117626378-b6287600-b17f-11eb-8226-528ea8d4c142.png)
 
-***Визуализация случайных изображений***
-
-![image](https://user-images.githubusercontent.com/56519328/118481447-2bfe8580-b71c-11eb-96cc-087f82996b9b.png)
 
 
 ***Вывод:***
