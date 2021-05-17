@@ -42,7 +42,7 @@
 
 ***График функции потерь:***
 
-![image](https://user-images.githubusercontent.com/56519328/117626378-b6287600-b17f-11eb-8226-528ea8d4c142.png)
+![image](https://user-images.githubusercontent.com/56519328/118482284-2e151400-b71d-11eb-8ec8-949afe5336d4.png)
 
 
 
